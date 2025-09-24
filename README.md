@@ -1,5 +1,5 @@
 # modelling-solar-system
-Project designed and created for the final assessment in 'Fundamentals of Computing' module of SHU's MSc Computer Science.
+Project designed and created for the final assessment in *Fundamentals of Computing* module of SHU's MSc Computer Science.
 
 ## Project Specifications
 Create a program that displays information about planets in our solar system. For each planet your program should hold its: 
