@@ -6,11 +6,10 @@ This project was designed and created solely to meet the requirments of the fina
 ### Data sources
 
 Planetary data was compiled and formatted as JSON using Google Gemin Pro 2.5 from the following sources:
-* International Astronomical Union (IAU): The IAU is the internationally recognized authority for naming and classifying celestial objects. https://www.iau.org/
-* NASA Science - Solar System Exploration: Provides comprehensive, up-to-date information on planets, moons, and other objects in our solar system. https://solarsystem.nasa.gov/
-* Minor Planet Center: Maintains a catalog of all minor bodies in the solar system, including provisional designations for newly discovered moons. https://minorplanetcenter.net/
-* JPL Solar System Dynamics: Offers detailed orbital data and physical characteristics for celestial bodies, which is a key source for moon counts and classifications.
-https://ssd.jpl.nasa.gov/
+* _International Astronomical Union (IAU)_: The IAU is the internationally recognized authority for naming and classifying celestial objects. https://www.iau.org/
+* _NASA Science - Solar System Exploration_: Provides comprehensive, up-to-date information on planets, moons, and other objects in our solar system. https://solarsystem.nasa.gov/
+* _Minor Planet Center_: Maintains a catalog of all minor bodies in the solar system, including provisional designations for newly discovered moons. https://minorplanetcenter.net/
+* _JPL Solar System Dynamics_: Offers detailed orbital data and physical characteristics for celestial bodies, which is a key source for moon counts and classifications. https://ssd.jpl.nasa.gov/
 
 
 ## Project specifications provided by SHU
