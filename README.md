@@ -11,7 +11,7 @@ Planetary data was compiled and formatted as JSON using Google Gemin Pro 2.5 fro
 * _Minor Planet Center_: Maintains a catalog of all minor bodies in the solar system, including provisional designations for newly discovered moons. https://minorplanetcenter.net/
 * _JPL Solar System Dynamics_: Offers detailed orbital data and physical characteristics for celestial bodies, which is a key source for moon counts and classifications. https://ssd.jpl.nasa.gov/
 
-Note that planetary such as the number of provisionally named planets chnages as new discoveries are made. 
+Note that planetary such as the number of provisional  planets changes over time as new discoveries are made and verified. 
 
 
 ## Project specifications (as provided by SHU)
