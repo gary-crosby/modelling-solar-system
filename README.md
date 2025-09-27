@@ -12,7 +12,7 @@ Planetary data was compiled and formatted as JSON using Google Gemin Pro 2.5 fro
 * _JPL Solar System Dynamics_: Offers detailed orbital data and physical characteristics for celestial bodies, which is a key source for moon counts and classifications. https://ssd.jpl.nasa.gov/
 
 
-## Project specifications provided by SHU
+## Project specifications (as provided by SHU)
 Create a program that displays information about planets in our solar system. For each planet your program should hold its: 
 * Name
 * Mass
