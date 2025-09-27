@@ -3,8 +3,8 @@
     {
       "name": "Mercury",
       "type": "Terrestrial",
-      "distance_from_sun_km": "57,900,000",
-      "mass_kg": "3.30 x 10^23",
+      "distance_from_sun_km": 57900000,
+      "mass_kg": 3.30e+23,
       "moons": {
         "permanently_named": [],
         "provisional_count": 0
@@ -13,8 +13,8 @@
     {
       "name": "Venus",
       "type": "Terrestrial",
-      "distance_from_sun_km": "108,200,000",
-      "mass_kg": "4.87 x 10^24",
+      "distance_from_sun_km": 108200000,
+      "mass_kg": 4.87e+24,
       "moons": {
         "permanently_named": [],
         "provisional_count": 0
@@ -23,8 +23,8 @@
     {
       "name": "Earth",
       "type": "Terrestrial",
-      "distance_from_sun_km": "149,600,000",
-      "mass_kg": "5.97 x 10^24",
+      "distance_from_sun_km": 149600000,
+      "mass_kg": 5.97e+24,
       "moons": {
         "permanently_named": [
           "The Moon"
@@ -35,8 +35,8 @@
     {
       "name": "Mars",
       "type": "Terrestrial",
-      "distance_from_sun_km": "227,900,000",
-      "mass_kg": "6.42 x 10^23",
+      "distance_from_sun_km": 227900000,
+      "mass_kg": 6.42e+23,
       "moons": {
         "permanently_named": [
           "Phobos",
@@ -48,8 +48,8 @@
     {
       "name": "Jupiter",
       "type": "Gas Giant",
-      "distance_from_sun_km": "778,500,000",
-      "mass_kg": "1.90 x 10^27",
+      "distance_from_sun_km": 778500000,
+      "mass_kg": 1.90e+27,
       "moons": {
         "permanently_named": [
           "Io",
@@ -101,8 +101,8 @@
     {
       "name": "Saturn",
       "type": "Gas Giant",
-      "distance_from_sun_km": "1,433,500,000",
-      "mass_kg": "5.68 x 10^26",
+      "distance_from_sun_km": 1433500000,
+      "mass_kg": 5.68e+26,
       "moons": {
         "permanently_named": [
           "Mimas",
@@ -159,8 +159,8 @@
     {
       "name": "Uranus",
       "type": "Ice Giant",
-      "distance_from_sun_km": "2,877,400,000",
-      "mass_kg": "8.68 x 10^25",
+      "distance_from_sun_km": 2877400000,
+      "mass_kg": 8.68e+25,
       "moons": {
         "permanently_named": [
           "Cordelia",
@@ -192,8 +192,8 @@
     {
       "name": "Neptune",
       "type": "Ice Giant",
-      "distance_from_sun_km": "4,503,000,000",
-      "mass_kg": "1.02 x 10^26",
+      "distance_from_sun_km": 4503000000,
+      "mass_kg": 1.02e+26,
       "moons": {
         "permanently_named": [
           "Triton",
@@ -217,8 +217,8 @@
     {
       "name": "Pluto",
       "type": "Dwarf",
-      "distance_from_sun_km": "5,906,000,000",
-      "mass_kg": "1.31 x 10^22",
+      "distance_from_sun_km": 5906000000,
+      "mass_kg": 1.31e+22,
       "moons": {
         "permanently_named": [
           "Charon",
@@ -233,8 +233,8 @@
     {
       "name": "Ceres",
       "type": "Dwarf",
-      "distance_from_sun_km": "413,700,000",
-      "mass_kg": "9.4 x 10^20",
+      "distance_from_sun_km": 413700000,
+      "mass_kg": 9.4e+20,
       "moons": {
         "permanently_named": [],
         "provisional_count": 0
@@ -243,8 +243,8 @@
     {
       "name": "Haumea",
       "type": "Dwarf",
-      "distance_from_sun_km": "6,480,000,000",
-      "mass_kg": "4.0 x 10^21",
+      "distance_from_sun_km": 6480000000,
+      "mass_kg": 4.0e+21,
       "moons": {
         "permanently_named": [
           "Hi'iaka",
@@ -256,8 +256,8 @@
     {
       "name": "Makemake",
       "type": "Dwarf",
-      "distance_from_sun_km": "6,850,000,000",
-      "mass_kg": "3.1 x 10^21",
+      "distance_from_sun_km": 6850000000,
+      "mass_kg": 3.1e+21,
       "moons": {
         "permanently_named": [
           "MK2"
@@ -268,8 +268,8 @@
     {
       "name": "Eris",
       "type": "Dwarf",
-      "distance_from_sun_km": "10,120,000,000",
-      "mass_kg": "1.66 x 10^22",
+      "distance_from_sun_km": 10120000000,
+      "mass_kg": 1.66e+22,
       "moons": {
         "permanently_named": [
           "Dysnomia"
