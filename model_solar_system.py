@@ -3,11 +3,12 @@ Description:
 
 Program displays information about planets in our solar system. For each planet your program should hold its: 
 * Name
-* Mass
+* Mass (kg)
 * Planet type (e.g., terrestrial, gas giant, dwarf planet)
-* Distance from the Sun
+* Distance from the Sun (km)
 * Orbital period (earth years)
-* A list of the planet's permanently-named moons and a count of provisional moons
+* A list of the planet's permanently-named moons, if any
+* A count of provisional moons, if any
 
 User can query the data by asking questions such as: 
 * Tell me everything about Saturn? 
