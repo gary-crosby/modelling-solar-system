@@ -48,7 +48,15 @@ try:
         # print(solar_system['planets'][0]['moons']['permanently_named']) 
         # print(type(solar_system['planets'][0]['moons']['permanently_named']))  # For debugging
         # print(solar_system['planets'][0]['moons']['provisional_count'])
-        # print(type(solar_system['planets'][0]['moons']['provisional_count']))  # For debugging  
+        # print(type(solar_system['planets'][0]['moons']['provisional_count']))  # For debugging
+        # print(solar_system['data_sources'])  # For debugging
+        # print(type(solar_system['data_sources']))  # For debugging                    
+        # print(solar_system['data_sources'][0])  # For debugging
+        # print(type(solar_system['data_sources'][0]))  # For debugging
+        # print(solar_system['data_sources'][0]['name'])  # For debugging
+        # print(type(solar_system['data_sources'][0]['name']))  # For debugging
+        # print(solar_system['data_sources'][0]['url'])  # For debugging
+        # print(type(solar_system['data_sources'][0]['url']))  # For debugging  
 except:
     print("Error reading JSON file.");
 
