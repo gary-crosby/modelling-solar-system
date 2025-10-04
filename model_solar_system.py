@@ -41,6 +41,8 @@ try:
         # print(type(solar_system['planets'][0]['type']))  # For
         # print(solar_system['planets'][0]['distance_from_sun_km'])  # For debugging
         # print(type(solar_system['planets'][0]['distance_from_sun_km']))
+        # print(solar_system['planets'][0]['orb_yrs'])  # For debugging
+        # print(type(solar_system['planets'][0]['orb_yrs']))  # For debugging
         # print(solar_system['planets'][0]['moons'])  # For debugging
         # print(type(solar_system['planets'][0]['moons']))  # For debugging
         # print(solar_system['planets'][0]['moons']['permanently_named']) 
