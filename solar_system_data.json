@@ -290,5 +290,11 @@
         "provisional_count": 0
       }
     }
+  ],
+  "data_sources": [
+    {"name": "International Astronomical Union (IAU)", "url": "https://www.iau.org/"},
+    {"name": "NASA Solar System Exploration", "url": "https://solarsystem.nasa.gov/"},
+    {"name": "Minor Planet Center", "url": "https://minorplanetcenter.net/"},
+    {"name": "JPL Solar System Dynamics", "url": "https://ssd.jpl.nasa.gov/"}
   ]
 }
