@@ -34,7 +34,7 @@ class Planet:
         self.moons_perm = moons_perm
         self.moons_prov_n = moons_prov
 
-class PermMoon:
+class MoonPerm:
     def __init__(self, name):
         self.name = name
 
