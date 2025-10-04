@@ -25,12 +25,12 @@ import json;
 
 # Class definitions
 class Planet:
-    def __init__(self, name, mass_kg, planet_type, distance_from_sun_km, orb_yrs, moons_perm = [], moons_prov = 0 ):
+    def __init__(self, name, mass_kg, planet_type, distance_from_sun_km, orb_yr, moons_perm = [], moons_prov = 0 ):
         self.name = name
         self.mass_tons = mass_kg / 1000
         self.type = planet_type
-        self.orbit_kms = distance_from_sun_km
-        self.orbit_yrs = orb_yrs
+        self.orbit_km = distance_from_sun_km
+        self.orbit_yr = orb_yr
         self.moons_perm = moons_perm
         self.moons_prov_n = moons_prov
 
