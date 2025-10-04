@@ -6,6 +6,7 @@ Program displays information about planets in our solar system. For each planet 
 * Mass
 * Planet type (e.g., terrestrial, gas giant, dwarf planet)
 * Distance from the Sun
+* Orbital period (earth years)
 * A list of the planet's permanently-named moons and a count of provisional moons
 
 User can query the data by asking questions such as: 
