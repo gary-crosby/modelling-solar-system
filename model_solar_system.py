@@ -23,6 +23,26 @@ SHU MSc Computer Science module 'Fundamentals of Computing'
 # Standard library imports
 import json;
 
+# Class definitions
+class Planet:
+    def __init__(self, name, mass_tons, planet_type, distance_from_sun_km, orb_yrs, moons_perm = [], moons_prov = 0 ):
+        self.name = name
+        self.mass_tons = mass_tons
+        self.type = planet_type
+        self.orbit_kms = distance_from_sun_km
+        self.orbit_yrs = orb_yrs
+        self.moons_perm = moons_perm
+        self.moons_prov_n = moons_prov
+
+class PermMoon:
+    def __init__(self, name):
+        self.name = name
+
+class DataSource:
+    def __init__(self, name, url):
+        self.name = name
+        self.url = url  
+    
 # Import JSON file and convert to Python dictionary
 try:
     with open('solar_system_data.json') as json_file:
