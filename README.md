@@ -4,15 +4,11 @@ This project was designed and created solely to meet the requirments of the fina
 ## Credits
 
 ### Data sources
+Planetary data was drawn from several sources, compiled and formatted as JSON using Google Gemin Pro 2.5. A portion of the data in solar_system_data.json was manually fact-checked to minimze the possibility of error. 
 
-Planetary data was compiled and formatted as JSON using Google Gemin Pro 2.5 from the following sources:
-* _International Astronomical Union (IAU)_: The IAU is the internationally recognized authority for naming and classifying celestial objects. https://www.iau.org/
-* _NASA Science - Solar System Exploration_: Provides comprehensive, up-to-date information on planets, moons, and other objects in our solar system. https://solarsystem.nasa.gov/
-* _Minor Planet Center_: Maintains a catalog of all minor bodies in the solar system, including provisional designations for newly discovered moons. https://minorplanetcenter.net/
-* _JPL Solar System Dynamics_: Offers detailed orbital data and physical characteristics for celestial bodies, which is a key source for moon counts and classifications. https://ssd.jpl.nasa.gov/
+Note that planetary such as the number of provisional planets changes over time as new discoveries are made and verified. 
 
-Note that planetary such as the number of provisional  planets changes over time as new discoveries are made and verified. 
-
+For information about data sources used, refer to solar_system_data.json
 
 ## Project specifications (as provided by SHU)
 Create a program that displays information about planets in our solar system. For each planet your program should hold its: 
