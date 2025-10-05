@@ -47,37 +47,7 @@ class DataSource:
 try:
     with open('solar_system_data.json') as json_file:
         solar_system = json.load(json_file)   
-        # print(solar_system)   # For debugging
-        # print(type(solar_system))  # For debugging
-        # print(solar_system['planets'])  # For debugging
-        # print(type(solar_system['planets']))  # For debugging
-        # print(solar_system['planets'][0])  # For debugging
-        # print(type(solar_system['planets'][0]))  # For debugging
-        # print(solar_system['planets'][0]['name'])  # For debugging
-        # print(type(solar_system['planets'][0]['name']))  # For debugging
-        # print(solar_system['planets'][0]['mass_kg'])  # For debugging
-        # print(type(solar_system['planets'][0]['mass_kg']))  # For debugging
-        # print(solar_system['planets'][0]['type'])  # For debugging
-        # print(type(solar_system['planets'][0]['type']))  # For
-        # print(solar_system['planets'][0]['distance_from_sun_km'])  # For debugging
-        # print(type(solar_system['planets'][0]['distance_from_sun_km']))
-        # print(solar_system['planets'][0]['orb_yrs'])  # For debugging
-        # print(type(solar_system['planets'][0]['orb_yrs']))  # For debugging
-        # print(solar_system['planets'][0]['moons'])  # For debugging
-        # print(type(solar_system['planets'][0]['moons']))  # For debugging
-        # print(solar_system['planets'][0]['moons']['permanently_named']) 
-        # print(type(solar_system['planets'][0]['moons']['permanently_named']))  # For debugging
-        # print(solar_system['planets'][0]['moons']['provisional_count'])
-        # print(type(solar_system['planets'][0]['moons']['provisional_count']))  # For debugging
-        # print(solar_system['data_sources'])  # For debugging
-        # print(type(solar_system['data_sources']))  # For debugging                    
-        # print(solar_system['data_sources'][0])  # For debugging
-        # print(type(solar_system['data_sources'][0]))  # For debugging
-        # print(solar_system['data_sources'][0]['name'])  # For debugging
-        # print(type(solar_system['data_sources'][0]['name']))  # For debugging
-        # print(solar_system['data_sources'][0]['url'])  # For debugging
-        # print(type(solar_system['data_sources'][0]['url']))  # For debugging  
 except:
-    print("Error reading JSON file.");
+    print("Error reading JSON file.")
 
 
