@@ -52,7 +52,7 @@ class TestPlanet(unittest.TestCase):
               54
               )
 
-    def test_planet_attributes(self):
+    def test_planet_properties(self):
         """Test all Planet properties."""
 
         # Venus
