@@ -14,7 +14,7 @@ import math
 # Add current directory to the Python path to import the module
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from model_solar_system import Planet, MoonPerm
+from model_solar_system import Planet, DataSource
 
 class TestPlanet(unittest.TestCase):
     """Test cases for the Planet class."""
@@ -51,6 +51,8 @@ class TestPlanet(unittest.TestCase):
               ["Io", "Europa", "Ganymede", "Callisto"],
               54
               )
+        
+        # Add setup for DataSources here
 
     def test_planet_properties(self):
         """Test all Planet properties."""
@@ -82,6 +84,15 @@ class TestPlanet(unittest.TestCase):
         assert self.jupiter.moons_perm == ["Io", "Europa", "Ganymede", "Callisto"], "Planet permanent moons count incorrect"  
         assert self.jupiter.moons_prov_n == 54, "Planet provisional moons count incorrect"
 
+    def test_add_moon_perm(self):
+        """Test adding a permanent moon to a planet."""
+        
+        # Add a new moon to Venus
+        self.jupiter.add_moon_perm("Thebe")
+        assert self.jupiter.moons_perm == ["Io", "Europa", "Ganymede", "Callisto", "Thebe"], "Failed to add new permanent moon to Venus"
+        assert len(self.jupiter.moons_perm) == 5, "Permanent moons count incorrect after adding new moon"
+
+    # Add test(s) for DataSources here
 
 if __name__ == "__main__":
   unittest.main() # run all tests

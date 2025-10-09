@@ -34,9 +34,8 @@ class Planet:
         self.moons_perm = moons_perm
         self.moons_prov_n = moons_prov
 
-class MoonPerm:
-    def __init__(self, name):
-        self.name = name
+    def add_moon_perm(self, moon):
+        self.moons_perm.append(moon)
 
 class DataSource:
     def __init__(self, name, url):
@@ -49,5 +48,4 @@ try:
         solar_system = json.load(json_file)   
 except:
     print("Error reading JSON file.")
-
 
