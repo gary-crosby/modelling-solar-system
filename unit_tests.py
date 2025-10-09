@@ -87,7 +87,7 @@ class TestPlanet(unittest.TestCase):
     def test_add_moon_perm(self):
         """Test adding a permanent moon to a planet."""
         
-        # Add a new moon to Venus
+        # Add a new moon to Jupiter
         self.jupiter.add_moon_perm("Thebe")
         assert self.jupiter.moons_perm == ["Io", "Europa", "Ganymede", "Callisto", "Thebe"], "Failed to add new permanent moon to Venus"
         assert len(self.jupiter.moons_perm) == 5, "Permanent moons count incorrect after adding new moon"
