@@ -21,17 +21,19 @@ SHU MSc Computer Science module 'Fundamentals of Computing'
 '''
 
 # Standard library imports
-import json;
+import json
+from pathlib import Path
 
 # Class definitions
 class Planet:
-    def __init__(self, name, mass_kg, planet_type, distance_from_sun_km, orb_yr, moons_perm = [], moons_prov = 0 ):
+    def __init__(self, name, mass_gigatons, type, orbit_km, orbit_yr, moons_perm=[], moons_prov=0):
         self.name = name
-        self.mass_kg = mass_kg
-        self.type = planet_type
-        self.orbit_km = distance_from_sun_km
-        self.orbit_yr = orb_yr
-        self.moons_perm = moons_perm
+        self.mass_gigatons = mass_gigatons
+        self.type = type
+        self.orbit_km = orbit_km
+        self.orbit_yr = orbit_yr
+        # avoid mutable default argument
+        self.moons_perm = moons_perm or []
         self.moons_prov_n = moons_prov
 
     def add_moon_perm(self, moon):
@@ -43,9 +45,58 @@ class DataSource:
         self.url = url  
     
 # Import JSON file and convert to Python dictionary
-try:
-    with open('solar_system_data.json') as json_file:
-        solar_system = json.load(json_file)   
-except:
-    print("Error reading JSON file.")
+def getJSON():
+    """Load the JSON file located in the same folder as this script and return the dict.
 
+    Returns None on failure and prints an error message with details.
+    """
+    base = Path(__file__).parent
+    json_path = base / 'solar_system_data.json'
+    try:
+        with open(json_path, 'r', encoding='utf-8') as json_file:
+            planets_dict = json.load(json_file)
+            return planets_dict
+    except FileNotFoundError:
+        print(f"Error: JSON file not found at {json_path}")
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON: {e}")
+    except Exception as e:
+        print(f"Unexpected error reading JSON: {e}")
+
+
+# Create list of Planet objects from JSON data
+def create_planet(planet_data):
+    """Create and return a Planet object from a single planet dict from the JSON."""
+    name = planet_data.get('name')
+    type = planet_data.get('type')
+    orbit_km = planet_data.get('distance_from_sun_km')
+    orbit_yr = planet_data.get('orb_yr')
+    mass_gigatons = int(planet_data.get('mass_kg') / 1000000000000) # convert kg to gigatons
+    moons_info = planet_data.get('moons', {}) #monns_info is not a field in JSON or a Planet.property
+    moons_perm_list = moons_info.get('permanently_named', [])
+    moons_prov_n = moons_info.get('provisional_count', 0)
+    p = Planet(name, mass_gigatons, type, orbit_km, orbit_yr, list(moons_perm_list), moons_prov_n)
+    return p
+
+# Main program
+planets_dict = getJSON()
+if planets_dict is None:
+    # getJSON already printed a helpful error message so we can exit the program
+    raise SystemExit(1)
+
+#print("Loaded JSON with keys:", list(planets_dict.keys())) # debug only
+
+# Create a list of planet instances
+planets = []
+for planet_data in planets_dict.get('planets', []):
+    planet = create_planet(planet_data)
+    planets.append(planet)
+# Print out details of each planet
+    print(planet.name)
+    print('  mass_gigagatons:', planet.mass_gigatons)
+    print('  type:', planet.type)
+    print('  orbit_km:', planet.orbit_km)
+    print('  orbit_yr:', planet.orbit_yr)
+    print('  moons_perm:', planet.moons_perm)
+    print('  moons_prov_n:', planet.moons_prov_n)
+    print('-----')
