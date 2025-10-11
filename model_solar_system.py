@@ -90,7 +90,7 @@ for planet_data in planets_dict.get('planets', []):
     planets.append(planet)
 # Print out details of each planet
     print(planet.name)
-    print('  mass_gigagatons:', planet.mass_gigatons)
+    print('  mass_gigatons:', planet.mass_gigatons)
     print('  type:', planet.type)
     print('  orbit_km:', planet.orbit_km)
     print('  orbit_yr:', planet.orbit_yr)
