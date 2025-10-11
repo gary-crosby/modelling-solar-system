@@ -36,9 +36,6 @@ class Planet:
         self.moons_perm = moons_perm or []
         self.moons_prov_n = moons_prov
 
-    def add_moon_perm(self, moon):
-        self.moons_perm.append(moon)
-
 class DataSource:
     def __init__(self, name, url):
         self.name = name
