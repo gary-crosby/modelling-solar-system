@@ -59,29 +59,29 @@ class TestPlanet(unittest.TestCase):
 
         # Venus
         assert self.venus.name == "Venus", "Planet name incorrect"
-        assert self.venus.mass_gigatons == 4.87e+24, "Planet mass incorrect"
+        assert self.venus.mass_gigatons == 4870000000000, "Planet mass incorrect"
         assert self.venus.type == "Terrestrial", "Planet type incorrect"
-        assert self.venus.orbit_km == 108200000, "Planet distance from Sun incorrect"    
+        assert self.venus.orbit_megakms == 108.2, "Planet distance from Sun incorrect"    
         assert self.venus.orbit_yr == 0.62, "Planet orbital period incorrect"
-        assert self.venus.moons_perm == [], "Planet permanent moons count incorrect"  
+        assert self.venus.moons_perm == [], "Planet permanent moons name(s) incorrect"  
         assert self.venus.moons_prov_n == 0, "Planet provisional moons count incorrect"
         
         # Earth
         assert self.earth.name == "Earth", "Planet name incorrect"
-        assert self.earth.mass_gigatons == 5.97e+24, "Planet mass incorrect"
+        assert self.earth.mass_gigatons == 5970000000000, "Planet mass incorrect"
         assert self.earth.type == "Terrestrial", "Planet type incorrect"
-        assert self.earth.orbit_km == 149600000, "Planet distance from Sun incorrect"    
+        assert self.earth.orbit_megakms == 149.6, "Planet distance from Sun incorrect"    
         assert self.earth.orbit_yr == 1.00, "Planet orbital period incorrect"
-        assert self.earth.moons_perm == ["Moon"], "Planet permanent moons count incorrect"  
+        assert self.earth.moons_perm == ["Moon"], "Planet permanent moons name(s) incorrect"  
         assert self.earth.moons_prov_n == 0, "Planet provisional moons count incorrect"
 
         # Jupiter
         assert self.jupiter.name == "Jupiter", "Planet name incorrect"
-        assert self.jupiter.mass_gigatons == 1.90e+27, "Planet mass incorrect"
+        assert self.jupiter.mass_gigatons == 1900000000000000, "Planet mass incorrect"
         assert self.jupiter.type == "Gas Giant", "Planet type incorrect"
-        assert self.jupiter.orbit_km == 778500000, "Planet distance from Sun incorrect"    
+        assert self.jupiter.orbit_megakms == 778.5, "Planet distance from Sun incorrect"    
         assert self.jupiter.orbit_yr == 11.86, "Planet orbital period incorrect"
-        assert self.jupiter.moons_perm == ["Io", "Europa", "Ganymede", "Callisto"], "Planet permanent moons count incorrect"  
+        assert self.jupiter.moons_perm == ["Io", "Europa", "Ganymede", "Callisto"], "Planet permanent moons name(s) incorrect"  
         assert self.jupiter.moons_prov_n == 54, "Planet provisional moons count incorrect"
 
     # Add test(s) for DataSources here
