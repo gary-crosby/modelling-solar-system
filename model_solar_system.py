@@ -26,11 +26,11 @@ from pathlib import Path
 
 # Class definitions
 class Planet:
-    def __init__(self, name, mass_gigatons, type, orbit_km, orbit_yr, moons_perm=[], moons_prov=0):
+    def __init__(self, name, mass_kg, type, orbit_km, orbit_yr, moons_perm=[], moons_prov=0):
         self.name = name
-        self.mass_gigatons = mass_gigatons
+        self.mass_gigatons = int(mass_kg/1000000000000) # convert kg to gigatons
         self.type = type
-        self.orbit_km = orbit_km
+        self.orbit_megakms = float(orbit_km/1000000) # convert km to millions of km
         self.orbit_yr = orbit_yr
         # avoid mutable default argument
         self.moons_perm = moons_perm or []
@@ -66,13 +66,13 @@ def create_planet(planet_data):
     """Create and return a Planet object from a single planet dict from the JSON."""
     name = planet_data.get('name')
     type = planet_data.get('type')
-    orbit_km = planet_data.get('distance_from_sun_km')
+    orbit_megakms = planet_data.get('distance_from_sun_km')
     orbit_yr = planet_data.get('orb_yr')
-    mass_gigatons = int(planet_data.get('mass_kg') / 1000000000000) # convert kg to gigatons
+    mass_gigatons = planet_data.get('mass_kg')
     moons_info = planet_data.get('moons', {}) #monns_info is not a field in JSON or a Planet.property
     moons_perm_list = moons_info.get('permanently_named', [])
     moons_prov_n = moons_info.get('provisional_count', 0)
-    p = Planet(name, mass_gigatons, type, orbit_km, orbit_yr, list(moons_perm_list), moons_prov_n)
+    p = Planet(name, mass_gigatons, type, orbit_megakms, orbit_yr, list(moons_perm_list), moons_prov_n)
     return p
 
 # Main program
@@ -81,19 +81,20 @@ if planets_dict is None:
     # getJSON already printed a helpful error message so we can exit the program
     raise SystemExit(1)
 
-#print("Loaded JSON with keys:", list(planets_dict.keys())) # debug only
-
 # Create a list of planet instances
+#print('-----') # debug only
 planets = []
 for planet_data in planets_dict.get('planets', []):
     planet = create_planet(planet_data)
     planets.append(planet)
 # Print out details of each planet
-    print(planet.name)
-    print('  mass_gigatons:', planet.mass_gigatons)
-    print('  type:', planet.type)
-    print('  orbit_km:', planet.orbit_km)
-    print('  orbit_yr:', planet.orbit_yr)
-    print('  moons_perm:', planet.moons_perm)
-    print('  moons_prov_n:', planet.moons_prov_n)
-    print('-----')
+    print(planet.name) # debug only
+    print('  mass_gigatons:', planet.mass_gigatons) # debug only
+    print('  type:', planet.type) # debug only
+    print('  orbit_megakms:', planet.orbit_megakms) # debug only
+    print('  orbit_yr:', planet.orbit_yr) # debug only
+    print('  moons_perm:', planet.moons_perm) # debug only
+    print('  moons_prov_n:', planet.moons_prov_n) # debug only
+    print('-----') # debug only
+
+# Setup GUI
