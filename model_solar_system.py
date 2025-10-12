@@ -60,7 +60,6 @@ def getJSON():
     except Exception as e:
         print(f"Unexpected error reading JSON: {e}")
 
-
 # Create list of Planet objects from JSON data
 def create_planet(planet_data):
     """Create and return a Planet object from a single planet dict from the JSON."""
@@ -87,14 +86,18 @@ planets = []
 for planet_data in planets_dict.get('planets', []):
     planet = create_planet(planet_data)
     planets.append(planet)
-# Print out details of each planet
-    print(planet.name) # debug only
-    print('  mass_gigatons:', planet.mass_gigatons) # debug only
-    print('  type:', planet.type) # debug only
-    print('  orbit_megakms:', planet.orbit_megakms) # debug only
-    print('  orbit_yr:', planet.orbit_yr) # debug only
-    print('  moons_perm:', planet.moons_perm) # debug only
-    print('  moons_prov_n:', planet.moons_prov_n) # debug only
-    print('-----') # debug only
+    # Print out details of each planet # debug only
+    # print(planet.name) # debug only
+    # print('  mass_gigatons:', planet.mass_gigatons) # debug only
+    # print('  type:', planet.type) # debug only
+    # print('  orbit_megakms:', planet.orbit_megakms) # debug only
+    # print('  orbit_yr:', planet.orbit_yr) # debug only
+    # print('  moons_perm:', planet.moons_perm) # debug only
+    # print('  moons_prov_n:', planet.moons_prov_n) # debug only
+    # print('-----') # debug only
+
+# Create a list of data source instances
+# # # # # # # #  -- TO DO -- # # # # # #
 
 # Setup GUI
+# # # # # # # #  -- TO DO -- # # # # # #
