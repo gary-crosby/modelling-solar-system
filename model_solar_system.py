@@ -25,7 +25,13 @@ import json
 from pathlib import Path
 
 # Class definitions
+
 class Planet:
+    # # # # # # # #  -- TO DO -- # # # # # #
+    # Add docstring
+    # convert mass to earth mass?
+    # convert distance to AU?
+    # # # # # # # # #  -- TO DO -- # # # # # #
     def __init__(self, name, mass_kg, type, orbit_km, orbit_yr, moons_perm=[], moons_prov=0):
         self.name = name
         self.mass_gigatons = float(mass_kg/1000000000000) # convert kg to billions of tons
@@ -37,6 +43,9 @@ class Planet:
         self.moons_prov_n = moons_prov
 
 class DataSource:
+    # # # # # # # #  -- TO DO -- # # # # # #
+    # Add docstring
+    # # # # # # # #  -- TO DO -- # # # # # #
     def __init__(self, name, url):
         self.name = name
         self.url = url  
