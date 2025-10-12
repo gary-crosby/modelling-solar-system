@@ -28,7 +28,7 @@ from pathlib import Path
 class Planet:
     def __init__(self, name, mass_kg, type, orbit_km, orbit_yr, moons_perm=[], moons_prov=0):
         self.name = name
-        self.mass_gigatons = float(mass_kg/1000000000000) # convert kg to gigatons
+        self.mass_gigatons = float(mass_kg/1000000000000) # convert kg to billions of tons
         self.type = type
         self.orbit_megakms = float(orbit_km/1000000) # convert km to millions of km
         self.orbit_yr = orbit_yr
