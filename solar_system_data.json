@@ -291,7 +291,7 @@
       }
     }
   ],
-  "data_sources": [
+  "references": [
     {"name": "International Astronomical Union (IAU)", "url": "https://www.iau.org/"},
     {"name": "NASA Solar System Exploration", "url": "https://solarsystem.nasa.gov/"},
     {"name": "Minor Planet Center", "url": "https://minorplanetcenter.net/"},
