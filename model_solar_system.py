@@ -43,7 +43,7 @@ class Planet:
         self.moons_prov_n = moons_prov
         self.mass_earth = mass_earth # mass relative to Earth
 
-class References:
+class Reference:
     # # # # # # # #  -- TO DO -- # # # # # #
     # Add docstring
     def __init__(self, name, url):
@@ -87,7 +87,7 @@ def create_reference(ref_data):
     """Create and return a References object from a single reference dict from the JSON."""
     name = ref_data.get('name')
     url = ref_data.get('url')
-    r = References(name, url)
+    r = Reference(name, url)
     return r
 
 # Main program
@@ -110,21 +110,27 @@ for planet_data in planets_dict.get('planets', []):
         earth_mass_kg = planet.mass_kg  
         # print('earth_mass_kg:', earth_mass_kg) # debug only
     # Print out details of each planet # debug only
-    print(planet.name) # debug only
-    print('  mass_kg:', planet.mass_kg) # debug only
-    print('  type:', planet.type) # debug only
-    print('  orbit_au:', planet.orbit_au) # debug only
-    print('  orbit_yr:', planet.orbit_yr) # debug only
-    print('  moons_perm:', planet.moons_perm) # debug only
-    print('  moons_prov_n:', planet.moons_prov_n) # debug only
-    print('-----') # debug only
+    # print(planet.name) # debug only
+    # print('  mass_kg:', planet.mass_kg) # debug only
+    # print('  type:', planet.type) # debug only
+    # print('  orbit_au:', planet.orbit_au) # debug only
+    # print('  orbit_yr:', planet.orbit_yr) # debug only
+    # print('  moons_perm:', planet.moons_perm) # debug only
+    # print('  moons_prov_n:', planet.moons_prov_n) # debug only
+    # print('-----') # debug only
+
+# Sort planets list by planet distance from sun, ascending order
+planets.sort(key=lambda p: p.orbit_au)   
+# print('Planets sorted by distance from Sun (AU):') # debug only
+# for planet in planets:
+#     print(f"{planet.name}: {planet.orbit_au} AU") # debug only
 
 # For each planet calculate its earth mass and set the property
 # Use 4 decimal places because dwarf planets have very small mass relative to Earth
 for planet in planets:    
     planet.mass_earth = round((planet.mass_kg / earth_mass_kg), 4) 
-    print('mass_earth:', planet.mass_earth) # debug only
-    print('-----') # debug only
+    # print('mass_earth:', planet.mass_earth) # debug only
+    # print('-----') # debug only   
 
 # Create a list of references (i.e., data sources)
 references = []
@@ -132,8 +138,8 @@ for ref_data in planets_dict.get('references', []):
     reference = create_reference(ref_data)
     references.append(reference)
     # Print out details of each reference # debug only
-    print('Reference Name:', reference.name) # debug only     
-    print('Reference URL:', reference.url) # debug only
+    # print('Reference Name:', reference.name) # debug only     
+    # print('Reference URL:', reference.url) # debug only
 
 # Create GUI using tkinter
 # # # # # # # #  -- TO DO -- # # # # # #
