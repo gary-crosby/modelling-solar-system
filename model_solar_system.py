@@ -1,10 +1,10 @@
-'''
+"""
 Program Description:
 
 Program displays information about all recocnized planets in our solar system.
 For each planet your program should hold its: 
 * Name
-* Mass (earth mass)
+* Mass (relative to Earth's mass)
 * Planet type (e.g., terrestrial, gas giant, dwarf planet)
 * Distance from the Sun (AU where 1 AU == 149,597,870.7 km)
 * Orbital period (earth years)
@@ -22,18 +22,22 @@ Additional notes:
 * The number of permanently named moons and provisional moons varies with the data source and date. The data used were accurate as of mid-2025.
 
 Created by Gary Crosby as the Final Assessment project in SHU online MSc Computer Science module 'Fundamentals of Computing' 
-'''
+"""
 
+########## Setup ##########
+ 
 # Standard library imports
+
 import json
 from pathlib import Path
 import tkinter as tk
 
 # Class definitions
+
 class Planet:
     def __init__(self, name, mass_kg, type, orbit_km, orbit_yr, moons_perm=None, moons_prov=0, mass_earth=0, orbit_au=0):
-        # # # # # # # #  -- TO DO -- # # # # # #
-        # Add docstring
+        """ Initialize a Planet instance.
+            mass_earth is mass relative to Earth and is set after planet is made. """
         self.name = name
         self.mass_kg = mass_kg
         self.type = type
@@ -43,9 +47,13 @@ class Planet:
         self.moons_prov_n = moons_prov
         self.mass_earth = mass_earth # mass relative to Earth
 
+    def set_mass_earth(self, earth_mass_kg):
+        """ Calculate and set the mass_earth which is planet mass relative to Earth's mass.
+            Use 4 decimal places because dwarf planets are  very small relative to Earth."""
+        self.mass_earth = round((self.mass_kg / earth_mass_kg), 4)
+
 class Reference:
-    # # # # # # # #  -- TO DO -- # # # # # #
-    # Add docstring
+    """ Initialize a Reference instance."""
     def __init__(self, name, url):
         self.name = name
         self.url = url  
@@ -53,10 +61,8 @@ class Reference:
 # Function definitions
 
 def getJSON():
-    """Load the JSON file located in the same folder as this script and return the dict.
-
-    Returns None on failure and prints an error message with details.
-    """
+    """ Load the JSON file located in the same folder as this script and return the dict.
+        Returns None on failure and prints an error message with details."""
     base = Path(__file__).parent
     json_path = base / 'solar_system_data.json'
     try:
@@ -71,26 +77,26 @@ def getJSON():
         print(f"Unexpected error reading JSON: {e}")
 
 def create_planet(planet_data):
-    """Create and return a Planet object from a single planet dict from the JSON."""
+    """ Create and return a Planet object from a single planet dict from the JSON."""
     name = planet_data.get('name')
     type = planet_data.get('type')
     orbit_km = planet_data.get('distance_from_sun_km')
     orbit_yr = planet_data.get('orb_yr')
     mass_kg = planet_data.get('mass_kg')
-    moons_info = planet_data.get('moons', {}) #moons_info is not a field in JSON or a Planet.property
+    moons_info = planet_data.get('moons', {}) 
     moons_perm_list = moons_info.get('permanently_named', [])
     moons_prov_n = moons_info.get('provisional_count', 0)
     p = Planet(name, mass_kg, type, orbit_km, orbit_yr, list(moons_perm_list), moons_prov_n,mass_earth=0, orbit_au=0)
     return p
 
 def create_reference(ref_data):
-    """Create and return a References object from a single reference dict from the JSON."""
+    """ Create and return a References object from a single reference dict from the JSON."""
     name = ref_data.get('name')
     url = ref_data.get('url')
     r = Reference(name, url)
     return r
 
-# Main program
+########## Main Program ########## 
 
 # Load JSON data
 planets_dict = getJSON()
@@ -99,16 +105,15 @@ if planets_dict is None:
     raise SystemExit(1)
 
 # Create a list of planet instances
-#print('-----') # debug only
 planets = []
 earth_mass_kg = 0
 for planet_data in planets_dict.get('planets', []):
     planet = create_planet(planet_data)
-    planets.append(planet) 
-    # Get earth mass in kg for later calculations
+    planets.append(planet)
+    # Could use a known value for Earth's but its more elegant to get it from JSON data
     if planet.name.lower() == 'earth':
         earth_mass_kg = planet.mass_kg  
-        # print('earth_mass_kg:', earth_mass_kg) # debug only
+        # print('earth_mass_kg:', earth_mass_kg) # debug only 
     # Print out details of each planet # debug only
     # print(planet.name) # debug only
     # print('  mass_kg:', planet.mass_kg) # debug only
@@ -119,18 +124,17 @@ for planet_data in planets_dict.get('planets', []):
     # print('  moons_prov_n:', planet.moons_prov_n) # debug only
     # print('-----') # debug only
 
-# Sort planets list by planet distance from sun, ascending order
+# For each planet set its earth_mass property
+for planet in planets:    
+    planet.set_mass_earth(earth_mass_kg) 
+    # print('mass_earth:', planet.mass_earth) # debug only
+    # print('-----') # debug only   
+
+# Sort planets list by planet's distance from sun in ascending order
 planets.sort(key=lambda p: p.orbit_au)   
 # print('Planets sorted by distance from Sun (AU):') # debug only
 # for planet in planets:
 #     print(f"{planet.name}: {planet.orbit_au} AU") # debug only
-
-# For each planet calculate its earth mass and set the property
-# Use 4 decimal places because dwarf planets have very small mass relative to Earth
-for planet in planets:    
-    planet.mass_earth = round((planet.mass_kg / earth_mass_kg), 4) 
-    # print('mass_earth:', planet.mass_earth) # debug only
-    # print('-----') # debug only   
 
 # Create a list of references (i.e., data sources)
 references = []
