@@ -20,8 +20,9 @@ User can query the data by asking questions such as:
 Additional notes:
 * The number of decimal places for mass relative to Earth and distance from the Sun in AU have been chosen to provide useful precision without excessive detail.
 * The number of permanently named moons and provisional moons varies with the data source and date. The data used were accurate as of mid-2025.
+* Reads all data from solar_system_data.json which must be in the same folder as this script
 
-Created by Gary Crosby as the Final Assessment project in SHU online MSc Computer Science module 'Fundamentals of Computing' 
+Created by Gary Crosby for as the Final Assessment project in SHU's online MSc Computer Science module 'Fundamentals of Computing' 
 """
 
 ########## Setup ##########
