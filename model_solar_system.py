@@ -117,12 +117,13 @@ def display_planet_info():
             info += f"Provisional moons count: {planet.moons_prov_n}\n"
 
         info += "\n"
+
         ###### TO DO - Add references at the end of text_area #####
+
         text_area.insert(tk.END, info)
 
-# TO DO -- Add 'Select All' functionality for planets and properties
+###### TO DO -- Add 'Select All' functionality for planets and properties ######
 #def on_checkbox_toggle():
-
 
 ########## Main Program ########## 
 
@@ -167,7 +168,7 @@ root.resizable(False, False)
 main = tk.Frame(root, padx=10, pady=10)
 main.pack(expand=True, fill='both')
 
-# TO DO -- Add text Headings for 'Planets' and 'Characteristics'
+###### TO DO -- Add text Headings for 'Planets' and 'Characteristics' ######
 
 # Setup left frame with checkboxes for planet selection
 planets_cb_frame = tk.Frame(main, padx=5, pady=5)
@@ -178,7 +179,8 @@ for i, planet in enumerate(planets):
     cb = tk.Checkbutton(planets_cb_frame, text=planet.name, variable=var)
     cb.pack(anchor='w')
     planet_vars[planet.name] = var 
-# TO DO ??? Add 'Select All' after all planets listed
+
+###### TO DO ??? Add 'Select All' after all planets listed ######
 # all_planets_var = tk.IntVar(value=0) 
 # all_planets_checkbox = (tk.Checkbutton(planets_cb_frame, text="Select All Planets", variable=all_planets_var))
 # all_planets_checkbox.pack(anchor='w')
@@ -201,7 +203,8 @@ type_checkbox.pack(anchor='w')
 orbit_au_checkbox.pack(anchor='w')
 orbit_yr_checkbox.pack(anchor='w')
 moons_checkbox.pack(anchor='w')
-# TO DO ??? Add 'Select All Characteristics' after all properties listed
+
+###### TO DO ??? Add 'Select All Characteristics' after all properties listed ######
 # all_props_var = tk.IntVar(value=0)
 # all_props_checkbox = tk.Checkbutton(prop_cb_frame, text="Select All Characteristics", variable=all_props_var)
 # all_props_checkbox.pack(anchor='w')
@@ -214,10 +217,10 @@ text_area.place(x=310, y=10, relwidth=1.0, width=-325, relheight=0.96)
 update_button = tk.Button(root, text="Update Display", command=display_planet_info)
 update_button.place(x=25, y=460)
 
-# Initialize display with default checkbox selectionsy
+# Initialize display with default checkbox states
 display_planet_info()                           
 
-# Main Tkinter GUI loop
+# Main Tkinter loop
 root.mainloop()
 
 # End of program
