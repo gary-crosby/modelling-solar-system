@@ -18,31 +18,41 @@ User can query the data by asking questions such as:
 * How many moons does Earth have? 
 
 Additional notes:
-* The number of decimal places for mass relative to Earth and distance from the Sun in AU have been chosen to provide useful precision without excessive detail.
-* The number of permanently named moons and provisional moons varies with the data source and date. The data used were accurate as of mid-2025.
-* Reads all data from solar_system_data.json which must be in the same folder as this script
+* Units chosen for mass (Earth mass), orbital distance (AU), and orbital period (Earth years) 
+  are commonly used in astronomy. The number of decimal places have been
+  chosen to provide useful precision without excessive detail.
+* The number of permanently named moons and provisional moons varies with the data source and date.
+  The data used were accurate as of mid-2025.
+* This script reads all data from solar_system_data.json which must be in the same folder.
 
-Created by Gary Crosby for as the Final Assessment project in SHU's online MSc Computer Science module 'Fundamentals of Computing' 
+Created by Gary Crosby for as the Final Assessment project (October 2025) in SHU's online
+MSc Computer Science module 'Fundamentals of Computing'
 """
 
 ########## Setup ##########
  
-# Standard library imports
+### Standard library imports ###
 
 import json
 from pathlib import Path
 import tkinter as tk
 
-### Class definitions ###
+### Classes ###
 
 class Planet:
     def __init__(self, name, mass_kg, type, orbit_km, orbit_yr, moons_perm=None, moons_prov=0, mass_earth=0, orbit_au=0):
         """ Initialize a Planet instance.
-            mass_earth is mass relative to Earth and is set after planet is made. """
+
+            Property mass_earth is mass relative to Earth and is set AFTER planet is instantiated.
+            Property orbit_au is distance from sun in Astronomical Units (AU) and is calculated here.
+            1 AU == 149,597,870.7 km
+            A class could have been created for permanent moons but seeing as the only property of moons
+            we are storing is their name, a list is a more appropriate data structure.
+        """
         self.name = name
         self.mass_kg = mass_kg
         self.type = type
-        self.orbit_au = round((float(orbit_km/149597870.7)),2) 
+        self.orbit_au = round((float(orbit_km/149597870.7)), 2) 
         self.orbit_yr = orbit_yr
         self.moons_perm = list(moons_perm) if moons_perm is not None else [] # avoid mutable default argument
         self.moons_prov_n = moons_prov
@@ -59,7 +69,7 @@ class Reference:
         self.name = name
         self.url = url  
 
-### Function definitions ###
+### Functions ###
 
 def getJSON():
     """ Load the JSON file located in the same folder as this script and return the dict.
@@ -97,38 +107,59 @@ def create_reference(ref_data):
     r = Reference(name, url)
     return r
 
-def display_planet_info():
+def display_planet_info(info_str=""):
     """ Display information based on selected planet(s) and characteristic(s) """
     text_area.delete(1.0, tk.END)  # Clear existing text
+    info = ""
+    # Loop through planets and characteristics to build info string
     for planet in planets:
         if not planet_vars[planet.name].get():
             continue  # Skip this planet if not selected
-        info = f"{planet.name}\n"
+        info = f"Planet: {planet.name}\n"
         if mass_var.get():
             info += f"Mass: {planet.mass_earth} Earth masses\n"
         if type_var.get():
             info += f"Type: {planet.type}\n"  
         if orbit_au_var.get():
-            info += f"Distance from sun: {planet.orbit_au} AU\n"
+            info += f"Orbital distance: {planet.orbit_au} AU\n"
         if orbit_yr_var.get():
             info += f"Orbital period: {planet.orbit_yr} Earth years\n"
         if moons_var.get():
             if len(planet.moons_perm) > 0:
-                info += f"Permanently named moons: {len(planet.moons_perm)} named {', '.join(planet.moons_perm)}\n"
+                info += f"Permanently named moons: {len(planet.moons_perm)}, named {', '.join(planet.moons_perm)}\n"
             else:
                 info += "Permanently named moons: None\n"
             if planet.moons_prov_n > 0:
                 info += f"Provisional moons: {planet.moons_prov_n}\n"
             else:
                 info += "Provisional moons: None\n"
-        info += "\n"
+        text_area.insert(tk.END, info + "\n")
+    # Add data sources at the end only if there is planet info to display
+    if info !="":
+        info = "Data Sources:\n"
+        for ref in references:
+            info += f"{ref.name} ({ref.url})\n"
         text_area.insert(tk.END, info)
-    ###### TO DO - Add references at the end of text_area #####
+    # Disable button until user changes selection
+    update_button.config(state=tk.DISABLED)  
 
+def validate_user_input():
+    """ User input is validated by enabling/disabling 'Update Display' button.
+    
+        The user uses checkboxes to select any combination of planets and characteristics
+        including none at all. The button is only enabled when at least one planet and
+        at least one characteristic is selected.
+    """
+    if any(var.get() for var in planet_vars.values()) and any([mass_var.get(), type_var.get(), orbit_au_var.get(), orbit_yr_var.get(), moons_var.get()]):
+        update_button.config(state=tk.NORMAL)
+    else:
+        update_button.config(state=tk.DISABLED)
 
 ########## Main Program ########## 
 
-# Load JSON data
+### Load data from JSON, and create Planet and Reference instances ###
+
+# Load JSON data into a dictionary
 planets_dict = getJSON()
 if planets_dict is None:
     # getJSON already printed a helpful error message so we can exit the program
@@ -158,7 +189,7 @@ for ref_data in planets_dict.get('references', []):
     reference = create_reference(ref_data)
     references.append(reference)
 
-# Create GUI using tkinter using (mostly) default settings for fonts, colors etc.
+### Create GUI using tkinter ###
 
 # Basic window setup
 root = tk.Tk()
@@ -170,19 +201,21 @@ root.resizable(False, False)
 main = tk.Frame(root, padx=10, pady=10)
 main.pack(expand=True, fill='both')
 
-# Setup left frame with checkboxes for planet selection
+# Setup left frame with checkboxes for planet selection.
+# Planet checkboxes are created dynamically so that if the number
+# of planets changes then the GUI will adapt automagically.
 planets_cb_frame = tk.Frame(main, padx=5, pady=5)
 planets_cb_frame.place(x=10, y=5)    
-planets_label = tk.Label(planets_cb_frame, text="Select planet(s):", font=("Arial", 9, "bold"))
+planets_label = tk.Label(planets_cb_frame, text="Select planet(s):", font=("Arial", 9, "bold") )
 planets_label.pack(anchor='w')
 planet_vars = {}
 for i, planet in enumerate(planets):
     var = tk.IntVar(value=0)  # Default to selected
-    cb = tk.Checkbutton(planets_cb_frame, text=planet.name, variable=var)
+    cb = tk.Checkbutton(planets_cb_frame, text=planet.name, variable=var, command=validate_user_input)
     cb.pack(anchor='w')
     planet_vars[planet.name] = var 
 
-# Setup midframe with checkboxes for planet properties 
+# Setup midframe with checkboxes for planet properties. 
 prop_cb_frame = tk.Frame(main, padx=5, pady=5)
 prop_cb_frame.place(x=130, y=5)  
 prop_label = tk.Label(prop_cb_frame, text="Select characteristic(s):", font=("Arial", 9, "bold"))
@@ -192,28 +225,29 @@ type_var = tk.IntVar(value=0)
 orbit_au_var = tk.IntVar(value=0)
 orbit_yr_var = tk.IntVar(value=0)
 moons_var = tk.IntVar(value=0)
-mass_checkbox = tk.Checkbutton(prop_cb_frame, text="Mass (Earth Masses)", variable=mass_var)
-type_checkbox = tk.Checkbutton(prop_cb_frame, text="Type", variable=type_var)
-orbit_au_checkbox = tk.Checkbutton(prop_cb_frame, text="Orbital Distance (AU)", variable=orbit_au_var)
-orbit_yr_checkbox = tk.Checkbutton(prop_cb_frame, text="Orbital Period (Earth years)", variable=orbit_yr_var)
-moons_checkbox = tk.Checkbutton(prop_cb_frame, text="Moons", variable=moons_var)
+mass_checkbox = tk.Checkbutton(prop_cb_frame, text="Mass", variable=mass_var, command=validate_user_input)
+type_checkbox = tk.Checkbutton(prop_cb_frame, text="Type", variable=type_var, command=validate_user_input)
+orbit_au_checkbox = tk.Checkbutton(prop_cb_frame, text="Orbital distance", variable=orbit_au_var, command=validate_user_input)
+orbit_yr_checkbox = tk.Checkbutton(prop_cb_frame, text="Orbital period", variable=orbit_yr_var, command=validate_user_input)
+moons_checkbox = tk.Checkbutton(prop_cb_frame, text="Moons", variable=moons_var, command=validate_user_input)
 mass_checkbox.pack(anchor='w')
 type_checkbox.pack(anchor='w')
 orbit_au_checkbox.pack(anchor='w')
 orbit_yr_checkbox.pack(anchor='w')
 moons_checkbox.pack(anchor='w')
 
-# Setup text area for displaying planet information
+# Setup text area for displaying user-selected planet information.
 text_area = tk.Text(main, wrap=tk.WORD, width=50, height=90)
 text_area.place(x=330, y=10, relwidth=1.0, width=-345, relheight=0.96)
+# Display initial instructional message in text area
+text_str = "Select planet(s) and characteristic(s), and then select 'Update Display'"
+text_area.insert(tk.END, text_str)  
 
-# Setup a button to display user-selected information
-update_button = tk.Button(root, text="Update Display", command=display_planet_info)
+# Setup a button to update user-selected information.
+# Button is disabled by default.
+update_button = tk.Button(root, text="Update Display", command=display_planet_info, state=tk.DISABLED)
 update_button.place(x=227, y=456)
-
-# Initialize display with default checkbox states
-display_planet_info()                           
-
+                         
 # Main Tkinter loop
 root.mainloop()
 
