@@ -97,6 +97,33 @@ def create_reference(ref_data):
     r = Reference(name, url)
     return r
 
+def display_planet_info():
+    ''' Display planet(s) information based on selected characteristic(s) '''
+    text_area.delete(1.0, tk.END)  # Clear existing text
+    for planet in planets:
+        if not planet_vars[planet.name].get():
+            continue  # Skip this planet if not selected
+        info = f"{planet.name}\n"
+        if mass_var.get():
+            info += f"Mass: {planet.mass_earth} Earth masses\n"
+        if type_var.get():
+            info += f"Type: {planet.type}\n"  
+        if orbit_au_var.get():
+            info += f"Distance from sun: {planet.orbit_au} AU\n"
+        if orbit_yr_var.get():
+            info += f"Orbital period: {planet.orbit_yr} Earth years\n"
+        if moons_var.get():
+            info += f"Permanently named moons: {', '.join(planet.moons_perm) if planet.moons_perm else 'None'}\n"
+            info += f"Provisional moons count: {planet.moons_prov_n}\n"
+
+        info += "\n"
+        ###### TO DO - Add references at the end of text_area #####
+        text_area.insert(tk.END, info)
+
+# TO DO -- Add 'Select All' functionality for planets and properties
+#def on_checkbox_toggle():
+
+
 ########## Main Program ########## 
 
 # Load JSON data
@@ -114,38 +141,83 @@ for planet_data in planets_dict.get('planets', []):
     # Could use a known value for Earth's but its more elegant to get it from JSON data
     if planet.name.lower() == 'earth':
         earth_mass_kg = planet.mass_kg  
-        # print('earth_mass_kg:', earth_mass_kg) # debug only 
-    # Print out details of each planet # debug only
-    # print(planet.name) # debug only
-    # print('  mass_kg:', planet.mass_kg) # debug only
-    # print('  type:', planet.type) # debug only
-    # print('  orbit_au:', planet.orbit_au) # debug only
-    # print('  orbit_yr:', planet.orbit_yr) # debug only
-    # print('  moons_perm:', planet.moons_perm) # debug only
-    # print('  moons_prov_n:', planet.moons_prov_n) # debug only
-    # print('-----') # debug only
 
 # For each planet set its earth_mass property
 for planet in planets:    
-    planet.set_mass_earth(earth_mass_kg) 
-    # print('mass_earth:', planet.mass_earth) # debug only
-    # print('-----') # debug only   
+    planet.set_mass_earth(earth_mass_kg)    
 
 # Sort planets list by planet's distance from sun in ascending order
 planets.sort(key=lambda p: p.orbit_au)   
-# print('Planets sorted by distance from Sun (AU):') # debug only
-# for planet in planets:
-#     print(f"{planet.name}: {planet.orbit_au} AU") # debug only
 
 # Create a list of references (i.e., data sources)
 references = []
 for ref_data in planets_dict.get('references', []):
     reference = create_reference(ref_data)
     references.append(reference)
-    # Print out details of each reference # debug only
-    # print('Reference Name:', reference.name) # debug only     
-    # print('Reference URL:', reference.url) # debug only
 
-# Create GUI using tkinter
-# # # # # # # #  -- TO DO -- # # # # # #
+# Create GUI using tkinter using default settings for fonts, colors etc.
 
+# Basic window setup
+root = tk.Tk()
+root.title("Solar System Planets Explorer")
+root.geometry("750x500") # Should fit on monitors as small as 800x600    
+root.resizable(False, False)
+
+ # Main frame
+main = tk.Frame(root, padx=10, pady=10)
+main.pack(expand=True, fill='both')
+
+# TO DO -- Add text Headings for 'Planets' and 'Characteristics'
+
+# Setup left frame with checkboxes for planet selection
+planets_cb_frame = tk.Frame(main, padx=5, pady=5)
+planets_cb_frame.place(x=10, y=5)    
+planet_vars = {}
+for i, planet in enumerate(planets):
+    var = tk.IntVar(value=0)  # Default to selected
+    cb = tk.Checkbutton(planets_cb_frame, text=planet.name, variable=var)
+    cb.pack(anchor='w')
+    planet_vars[planet.name] = var 
+# TO DO ??? Add 'Select All' after all planets listed
+# all_planets_var = tk.IntVar(value=0) 
+# all_planets_checkbox = (tk.Checkbutton(planets_cb_frame, text="Select All Planets", variable=all_planets_var))
+# all_planets_checkbox.pack(anchor='w')
+
+# Setup midframe with checkboxes for planet properties 
+prop_cb_frame = tk.Frame(main, padx=5, pady=5)
+prop_cb_frame.place(x=110, y=5)  
+mass_var = tk.IntVar(value=0)
+type_var = tk.IntVar(value=0)  
+orbit_au_var = tk.IntVar(value=0)
+orbit_yr_var = tk.IntVar(value=0)
+moons_var = tk.IntVar(value=0)
+mass_checkbox = tk.Checkbutton(prop_cb_frame, text="Mass (Earth Masses)", variable=mass_var)
+type_checkbox = tk.Checkbutton(prop_cb_frame, text="Type", variable=type_var)
+orbit_au_checkbox = tk.Checkbutton(prop_cb_frame, text="Orbital Distance (AU)", variable=orbit_au_var)
+orbit_yr_checkbox = tk.Checkbutton(prop_cb_frame, text="Orbital Period (Earth years)", variable=orbit_yr_var)
+moons_checkbox = tk.Checkbutton(prop_cb_frame, text="Moons", variable=moons_var)
+mass_checkbox.pack(anchor='w')
+type_checkbox.pack(anchor='w')
+orbit_au_checkbox.pack(anchor='w')
+orbit_yr_checkbox.pack(anchor='w')
+moons_checkbox.pack(anchor='w')
+# TO DO ??? Add 'Select All Characteristics' after all properties listed
+# all_props_var = tk.IntVar(value=0)
+# all_props_checkbox = tk.Checkbutton(prop_cb_frame, text="Select All Characteristics", variable=all_props_var)
+# all_props_checkbox.pack(anchor='w')
+
+# Setup text area for displaying planet information
+text_area = tk.Text(main, wrap=tk.WORD, width=50, height=90)
+text_area.place(x=310, y=10, relwidth=1.0, width=-325, relheight=0.96)
+
+# Setup a button to display user-selected information
+update_button = tk.Button(root, text="Update Display", command=display_planet_info)
+update_button.place(x=25, y=460)
+
+# Initialize display with default checkbox selectionsy
+display_planet_info()                           
+
+# Main Tkinter GUI loop
+root.mainloop()
+
+# End of program
