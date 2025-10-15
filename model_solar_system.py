@@ -19,14 +19,16 @@ User can query the data by asking questions such as:
 
 Additional notes:
 * Units chosen for mass (Earth mass), orbital distance (AU), and orbital period (Earth years) 
-  are commonly used in astronomy. The number of decimal places have been
-  chosen to provide useful precision without excessive detail.
+  are commonly used in astronomy. See https://en.wikipedia.org/wiki/Astronomical_system_of_units The number of decimal places have been chosen to provide
+  useful precision without excessive detail.
 * The number of permanently named moons and provisional moons varies with the data source and date.
   The data used were accurate as of mid-2025.
 * This script reads all data from solar_system_data.json which must be in the same folder.
 
-Created by Gary Crosby for as the Final Assessment project (October 2025) in SHU's online
-MSc Computer Science module 'Fundamentals of Computing'
+Created by Gary Crosby for as the Final Assessment project in SHU's online
+MSc Computer Science module 'Fundamentals of Computing'.
+
+October 2025
 """
 
 ########## Setup ##########
@@ -73,7 +75,12 @@ class Reference:
 
 def getJSON():
     """ Load the JSON file located in the same folder as this script and return the dict.
-        Returns None on failure and prints an error message with details."""
+        Returns None on failure and prints an error message with details.
+        
+        I used the following resources when working with JSON:
+            https://docs.python.org/3/library/json.html
+            https://docs.python.org/3/library/pathlib.html#module-pathlib
+    """
     base = Path(__file__).parent
     json_path = base / 'solar_system_data.json'
     try:
@@ -190,6 +197,9 @@ for ref_data in planets_dict.get('references', []):
     references.append(reference)
 
 ### Create GUI using tkinter ###
+#   I referred to the following resources when creating and working with the GUI:
+#       https://www.pythontutorial.net/tkinter/
+#       https://docs.python.org/3/library/tkinter.html
 
 # Basic window setup
 root = tk.Tk()
