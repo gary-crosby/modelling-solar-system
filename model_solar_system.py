@@ -18,12 +18,12 @@ User can query the data by asking questions such as:
 * How many moons does Earth have? 
 
 Additional notes:
+* This script reads all data from solar_system_data.json which must be in the same folder.
 * Units chosen for mass (Earth mass), orbital distance (AU), and orbital period (Earth years) 
   are commonly used in astronomy. See https://en.wikipedia.org/wiki/Astronomical_system_of_units 
   The number of decimal places have been chosen to provide useful precision without excessive detail.
 * The number of permanently named moons and provisional moons varies with the data source and date.
   The data used were accurate as of mid-2025.
-* This script reads all data from solar_system_data.json which must be in the same folder.
 
 Created by Gary Crosby for as the Final Assessment project in SHU's online
 MSc Computer Science module 'Fundamentals of Computing'.
@@ -46,10 +46,9 @@ class Planet:
         """ Initialize a Planet instance.
 
             Property mass_earth is mass relative to Earth and is set AFTER Planet is instantiated.
-            Property orbit_au is distance from sun in Astronomical Units (AU) and is calculated here.
-            1 AU == 149,597,870.7 km
+            Property orbit_au is distance from sun in Astronomical Units (AU) and is calculated here where 1 AU == 149,597,870.7 km
             A class could have been created for permanent moons but seeing as the only property of moons
-            we are storing is their name, a list is a simpler and more appropriate data structure.
+            stored is their name(s), then a list is a simpler and more appropriate data structure.
         """
         self.name = name
         self.mass_kg = mass_kg
@@ -75,8 +74,9 @@ class Reference:
 
 def getJSON():
     """ Load the JSON file located in the same folder as this script and return the dict.
-        Returns None on failure and prints an error message with details.
         
+        Returns None on failure and prints an error message with details.
+
         I used the following resources when working with JSON:
             https://docs.python.org/3/library/json.html
             https://docs.python.org/3/library/pathlib.html#module-pathlib
@@ -118,7 +118,7 @@ def display_planet_info(info_str=""):
     """ Display information based on selected planet(s) and characteristic(s) """
     text_area.delete(1.0, tk.END)  # Clear existing text
     info = ""
-    # Loop through planets and characteristics to build info string
+    # Loop through planets and characteristics to build string to display
     for planet in planets:
         if not planet_vars[planet.name].get():
             continue  # Skip this planet if not selected
@@ -147,15 +147,15 @@ def display_planet_info(info_str=""):
         for ref in references:
             info += f"{ref.name} ({ref.url})\n"
         text_area.insert(tk.END, info)
-    # Disable button until user changes selection
+    # Disable button until user changes selection again
     update_button.config(state=tk.DISABLED)  
 
 def validate_user_input():
     """ User input is validated by enabling/disabling 'Update Display' button.
     
         The user uses checkboxes to select any combination of planets and characteristics
-        including none at all. The button is only enabled when at least one planet and
-        at least one characteristic is selected.
+        including none at all. The button is only enabled when at least one planet AND
+        at least one characteristic are selected.
     """
     if any(var.get() for var in planet_vars.values()) and any([mass_var.get(), type_var.get(), orbit_au_var.get(), orbit_yr_var.get(), moons_var.get()]):
         update_button.config(state=tk.NORMAL)
@@ -197,17 +197,18 @@ for ref_data in planets_dict.get('references', []):
     references.append(reference)
 
 ### Create GUI using tkinter ###
+#
 #   I referred to the following resources when creating and working with the GUI:
 #       https://www.pythontutorial.net/tkinter/
 #       https://docs.python.org/3/library/tkinter.html
 
-# Basic window setup
+# Setup GUI window
 root = tk.Tk()
 root.title("Solar System Planets Explorer")
 root.geometry("750x500") # Should fit on monitors as small as 800x600    
 root.resizable(False, False)
 
- # Main frame
+ # Setup main frame
 main = tk.Frame(root, padx=10, pady=10)
 main.pack(expand=True, fill='both')
 
@@ -225,7 +226,7 @@ for i, planet in enumerate(planets):
     cb.pack(anchor='w')
     planet_vars[planet.name] = var 
 
-# Setup midframe with checkboxes for planet properties. 
+# Setup mid frame with checkboxes for planet properties. 
 prop_cb_frame = tk.Frame(main, padx=5, pady=5)
 prop_cb_frame.place(x=130, y=5)  
 prop_label = tk.Label(prop_cb_frame, text="Select characteristic(s):", font=("Arial", 9, "bold"))
@@ -249,16 +250,16 @@ moons_checkbox.pack(anchor='w')
 # Setup text area for displaying user-selected planet information.
 text_area = tk.Text(main, wrap=tk.WORD, width=50, height=90)
 text_area.place(x=330, y=10, relwidth=1.0, width=-345, relheight=0.96)
-# Display initial instructional message in text area
+# Display initial instructions in text area
 text_str = "Select planet(s) and characteristic(s), and then select 'Update Display'"
 text_area.insert(tk.END, text_str)  
 
-# Setup a button to update user-selected information.
+# Setup 'Update Display' button to update user-selected information.
 # Button is disabled by default.
 update_button = tk.Button(root, text="Update Display", command=display_planet_info, state=tk.DISABLED)
 update_button.place(x=227, y=456)
                          
-# Main Tkinter loop
+# Main tkinter loop
 root.mainloop()
 
 ########## End of program ##########
