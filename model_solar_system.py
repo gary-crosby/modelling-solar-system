@@ -19,8 +19,8 @@ User can query the data by asking questions such as:
 
 Additional notes:
 * Units chosen for mass (Earth mass), orbital distance (AU), and orbital period (Earth years) 
-  are commonly used in astronomy. See https://en.wikipedia.org/wiki/Astronomical_system_of_units The number of decimal places have been chosen to provide
-  useful precision without excessive detail.
+  are commonly used in astronomy. See https://en.wikipedia.org/wiki/Astronomical_system_of_units 
+  The number of decimal places have been chosen to provide useful precision without excessive detail.
 * The number of permanently named moons and provisional moons varies with the data source and date.
   The data used were accurate as of mid-2025.
 * This script reads all data from solar_system_data.json which must be in the same folder.
@@ -45,11 +45,11 @@ class Planet:
     def __init__(self, name, mass_kg, type, orbit_km, orbit_yr, moons_perm=None, moons_prov=0, mass_earth=0, orbit_au=0):
         """ Initialize a Planet instance.
 
-            Property mass_earth is mass relative to Earth and is set AFTER planet is instantiated.
+            Property mass_earth is mass relative to Earth and is set AFTER Planet is instantiated.
             Property orbit_au is distance from sun in Astronomical Units (AU) and is calculated here.
             1 AU == 149,597,870.7 km
             A class could have been created for permanent moons but seeing as the only property of moons
-            we are storing is their name, a list is a more appropriate data structure.
+            we are storing is their name, a list is a simpler and more appropriate data structure.
         """
         self.name = name
         self.mass_kg = mass_kg
