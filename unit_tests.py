@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from model_solar_system import Planet, Reference
 
 class TestPlanet(unittest.TestCase):
-    """Test cases for the Planet class."""
+    """Test cases for the Planet and Reference classes."""
     
     def setUp(self):
         
@@ -40,7 +40,7 @@ class TestPlanet(unittest.TestCase):
               ["Moon"]
               )
         
-        # Create test data for >1 moons and >1 provisional mmons
+        # Create test data for >1 moons and >1 provisional moons
         # Note: Jupiter has many perm moons but to save time we'll use only 4
         self.jupiter = Planet(
               "Jupiter",
@@ -51,14 +51,19 @@ class TestPlanet(unittest.TestCase):
               ["Io", "Europa", "Ganymede", "Callisto"],
               54
               )
-        # 
+        
+        # Set mass_earth for three planets
+        self.earth.set_mass_earth(self.earth.mass_kg)
+        self.venus.set_mass_earth(self.earth.mass_kg)
+        self.jupiter.set_mass_earth(self.earth.mass_kg)  
 
-        # Add setup for DataSources here
+        # Create a Reference object
+        self.ref1 = Reference("NASA", "https://nasa.gov")
 
     def test_planet_properties(self):
-        """Test all Planet properties except mass_earth."""
+        """Test all Planet properties and methods."""
 
-        # Venus
+        # Venus -- a planet with 0 moons and 0 provisional moons
         assert self.venus.name == "Venus", "Planet name incorrect"
         assert self.venus.mass_kg == 4.87e+24, "Planet mass incorrect"
         assert self.venus.type == "Terrestrial", "Planet type incorrect"
@@ -66,8 +71,9 @@ class TestPlanet(unittest.TestCase):
         assert self.venus.orbit_yr == 0.62, "Planet orbital period incorrect"
         assert self.venus.moons_perm == [], "Planet permanent moons name(s) incorrect"  
         assert self.venus.moons_prov_n == 0, "Planet provisional moons count incorrect"
+        assert self.venus.mass_earth == round(4.87e+24/5.97e+24, 4), "Planet mass relative to Earth incorrect"
         
-        # Earth
+        # Earth -- a planet with 1 moon and 0 provisional moons
         assert self.earth.name == "Earth", "Planet name incorrect"
         assert self.earth.mass_kg == 5.97e+24, "Planet mass incorrect"
         assert self.earth.type == "Terrestrial", "Planet type incorrect"
@@ -75,6 +81,7 @@ class TestPlanet(unittest.TestCase):
         assert self.earth.orbit_yr == 1.00, "Planet orbital period incorrect"
         assert self.earth.moons_perm == ["Moon"], "Planet permanent moons name(s) incorrect"  
         assert self.earth.moons_prov_n == 0, "Planet provisional moons count incorrect"
+        assert self.earth.mass_earth == round(5.97e+24/5.97e+24, 4), "Planet mass relative to Earth incorrect"
 
         # Jupiter
         assert self.jupiter.name == "Jupiter", "Planet name incorrect"
@@ -84,8 +91,12 @@ class TestPlanet(unittest.TestCase):
         assert self.jupiter.orbit_yr == 11.86, "Planet orbital period incorrect"
         assert self.jupiter.moons_perm == ["Io", "Europa", "Ganymede", "Callisto"], "Planet permanent moons name(s) incorrect"  
         assert self.jupiter.moons_prov_n == 54, "Planet provisional moons count incorrect"
+        assert self.jupiter.mass_earth == round(1.90e+27/5.97e+24, 4), "Planet mass relative to Earth incorrect"
 
-    # Add test(s) for References here
+    def test_reference_properties(self):
+        """Test all Reference properties."""
+        assert self.ref1.name == "NASA", "Reference source incorrect"
+        assert self.ref1.url == "https://nasa.gov", "Reference URL incorrect"   
 
 if __name__ == "__main__":
   unittest.main() # run all tests
