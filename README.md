@@ -6,7 +6,7 @@ This project was designed and created solely to meet the requirments of the fina
 
 ### Data sources
 
-Planetary data was drawn from several sources, compiled and formatted as JSON using Google Gemin Pro 2.5. A portion of the data in solar_system_data.json was manually fact-checked to minimze the possibility of error.
+Planetary data was drawn from several sources, compiled and formatted as JSON with the assistance of Google Gemini Pro 2.5. A portion of the data in solar_system_data.json was manually audited to minimze the possibility of error.
 
 Note that planetary such as the number of provisional planets changes over time as new discoveries are made and verified.
 
