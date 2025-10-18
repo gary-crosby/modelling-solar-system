@@ -77,7 +77,7 @@ def getJSON():
         
         Returns None on failure and prints an error message with details.
 
-        I used the following resources when working with JSON:
+        I used the following resources (but did not copy any specific algorithm or code) when working with JSON:
             https://docs.python.org/3/library/json.html
             https://docs.python.org/3/library/pathlib.html#module-pathlib
     """
@@ -198,7 +198,7 @@ for ref_data in planets_dict.get('references', []):
 
 ### Create GUI using tkinter ###
 #
-#   I referred to the following resources when creating and working with the GUI:
+#   I referred to the following resources (but did not copy any specific algorithm or code) when creating and working with the GUI:
 #       https://www.pythontutorial.net/tkinter/
 #       https://docs.python.org/3/library/tkinter.html
 
