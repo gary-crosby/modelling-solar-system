@@ -2,6 +2,10 @@
 
 This project was designed and created solely to meet the requirments of the final assessment in the *Fundamentals of Computing* module of Sheffield-Hallam University's online *MSc Computer Science*.
 
+## Updates
+
+25.10.2025: Earth has a second moon! That's right, a tiny rock called **2025 PN7** is Earth's second moon, see [https://iopscience.iop.org/article/10.3847/2515-5172/ae028f](https://iopscience.iop.org/article/10.3847/2515-5172/ae028f). I added 2025 PN7 to solar_system_data.json. 
+
 ## Credits
 
 ### Data sources
