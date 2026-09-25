@@ -1,6 +1,6 @@
 # modelling-solar-system
 
-This project was designed and created solely to meet the requirments of the final assessment in the *Fundamentals of Computing* module of Sheffield-Hallam University's online *MSc Computer Science*.
+This project was designed and created solely to meet the requirements of the final assessment in the *Fundamentals of Computing* module of Sheffield-Hallam University's online *MSc Computer Science*.
 
 ## Updates
 
