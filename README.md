@@ -1,6 +1,10 @@
 # modelling-solar-system
 
-This project was designed and created solely to meet the requirments of the final assessment in the *Fundamentals of Computing* module of Sheffield-Hallam University's online *MSc Computer Science*.
+This project was designed and created solely to meet the requirements of the final assessment in the *Fundamentals of Computing* module of Sheffield-Hallam University's online *MSc Computer Science*.
+
+## Updates
+
+25.10.2025: Earth has a second moon! That's right, a tiny rock called **2025 PN7** is Earth's second moon, see [https://iopscience.iop.org/article/10.3847/2515-5172/ae028f](https://iopscience.iop.org/article/10.3847/2515-5172/ae028f). I added 2025 PN7 to solar_system_data.json. 
 
 ## Updates
 
@@ -10,7 +14,7 @@ This project was designed and created solely to meet the requirments of the fina
 
 ### Data sources
 
-Planetary data was drawn from several sources, compiled and formatted as JSON with the assistance of Google Gemini Pro 2.5. A portion of the data in solar_system_data.json was manually audited to minimze the possibility of error.
+Planetary data was drawn from several sources, compiled and formatted as JSON with the assistance of Google Gemini Pro 2.5. A portion of the data in solar_system_data.json was manually audited to minimize the possibility of error.
 
 Note that planetary such as the number of provisional planets changes over time as new discoveries are made and verified.
 
